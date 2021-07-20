@@ -14,6 +14,7 @@ class TextViewController: UIViewController {
     @IBOutlet weak var sumButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var compButton: UIToolbar!
+    @IBOutlet weak var toolbar: UIToolbar!
     
     var txt: String?
     var summarisedContent: [String] = []
@@ -45,6 +46,9 @@ class TextViewController: UIViewController {
         }
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tap)
+        if (!stc){
+            toolbar.isHidden = true
+        }
     }
     
     // MARK: - Navigation

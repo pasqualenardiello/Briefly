@@ -113,13 +113,13 @@
 		387421C926A6133600723B81 /* question_tokens.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = question_tokens.json; sourceTree = "<group>"; };
 		387421CA26A6133600723B81 /* encoded_tokens.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = encoded_tokens.json; sourceTree = "<group>"; };
 		387421CB26A6133600723B81 /* basic_tokenized_questions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = basic_tokenized_questions.json; sourceTree = "<group>"; };
-		387421D626A6166D00723B81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		387421D726A6166D00723B81 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		38777FAE26A6C61F000E55F2 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		387A0BE626A2103C00CD9DCB /* pdfUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pdfUtil.swift; sourceTree = "<group>"; };
 		387DDA9426A347BE001EA89D /* RecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RecentsViewController.swift; path = Test_interface/RecentsViewController.swift; sourceTree = SOURCE_ROOT; };
 		3892D5F226A5B5B800FF41CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3892D5F326A5B5B800FF41CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		389A4C8326A6D74C00F88DF4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = ../Test_interface/it.lproj/Main.strings; sourceTree = "<group>"; };
 		3C2C742BC72F39F198CB84EB /* Pods_Test_Interface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_Interface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC3C7ADC464CFA4CE8398F9 /* Pods_Test_Interface_Test_InterfaceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_Interface_Test_InterfaceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		686A9266B78C08060D4C4DE2 /* Pods-Test_Interface.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Test_Interface.release.xcconfig"; path = "Target Support Files/Pods-Test_Interface/Pods-Test_Interface.release.xcconfig"; sourceTree = "<group>"; };
@@ -599,7 +599,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3892D5F226A5B5B800FF41CD /* Base */,
-				387421D626A6166D00723B81 /* it */,
+				389A4C8326A6D74C00F88DF4 /* it */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

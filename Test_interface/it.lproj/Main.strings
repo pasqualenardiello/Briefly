@@ -1,12 +1,8 @@
-
 /* Class = "UIBarButtonItem"; title = "Summarize"; ObjectID = "B3z-th-4gi"; */
 "B3z-th-4gi.title" = "Riassumi";
 
 /* Class = "UILabel"; text = "Save when is done:"; ObjectID = "Dmc-ap-VfN"; */
 "Dmc-ap-VfN.text" = "Salva quando finito:";
-
-/* Class = "UINavigationItem"; title = "Text Comprehension"; ObjectID = "FLK-LQ-tMl"; */
-"FLK-LQ-tMl.title" = "Comprensione del Testo";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "MXM-wu-vLX"; */
 "MXM-wu-vLX.title" = "Impostazioni";
@@ -14,32 +10,23 @@
 /* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "Nj0-qH-txX"; */
 "Nj0-qH-txX.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
 
-/* Class = "UILabel"; text = "Insert question:"; ObjectID = "QZL-Wv-6kf"; */
-"QZL-Wv-6kf.text" = "Fai una domanda:";
-
 /* Class = "UILabel"; text = "Summary lenght"; ObjectID = "TUK-fb-5vM"; */
-"TUK-fb-5vM.text" = "Lunghezza sintesi";
+"TUK-fb-5vM.text" = "Lunghezza sintesi:";
 
 /* Class = "UIButton"; normalTitle = "Scan with camera"; ObjectID = "TYC-Rr-f4x"; */
-"TYC-Rr-f4x.normalTitle" = "Scansiona con camera";
-
-/* Class = "UIButton"; normalTitle = "Answer!"; ObjectID = "VOs-PQ-mcZ"; */
-"VOs-PQ-mcZ.normalTitle" = "Rispondi!";
+"TYC-Rr-f4x.normalTitle" = "Scansiona da camera ";
 
 /* Class = "UINavigationItem"; title = "Scanned Text"; ObjectID = "eSI-5v-Y2n"; */
 "eSI-5v-Y2n.title" = "Testo Scannerizzato";
 
 /* Class = "UILabel"; text = "Recents"; ObjectID = "eZG-Fi-ZHw"; */
-"eZG-Fi-ZHw.text" = "Recenti";
+"eZG-Fi-ZHw.text" = "Recents";
 
 /* Class = "UIButton"; normalTitle = "Pick from PDF"; ObjectID = "eeH-mb-44m"; */
-"eeH-mb-44m.normalTitle" = "Scegli da PDF";
+"eeH-mb-44m.normalTitle" = "Scegli un PDF";
 
 /* Class = "UITextView"; text = "Summary placeholder"; ObjectID = "gBr-Dq-1Cz"; */
 "gBr-Dq-1Cz.text" = "Summary placeholder";
-
-/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.tff f f f f ehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiudaioque civiuda.tff f f f f ehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda"; ObjectID = "khs-g5-vFK"; */
-"khs-g5-vFK.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.tff f f f f ehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiudaioque civiuda.tff f f f f ehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda";
 
 /* Class = "UIButton"; normalTitle = "Pick from gallery"; ObjectID = "ls8-Ux-Lat"; */
 "ls8-Ux-Lat.normalTitle" = "Scegli da galleria";
@@ -55,3 +42,18 @@
 
 /* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "uYJ-JP-NMa"; */
 "uYJ-JP-NMa.title" = "Annulla";
+
+/* Class = "UILabel"; text = "(Beta) Show TC:"; ObjectID = "4pW-5d-LxW"; */
+"4pW-5d-LxW.text" = "(Beta) Mostra CT:";
+
+/* Class = "UINavigationItem"; title = "Text Comprehension"; ObjectID = "FLK-LQ-tMl"; */
+"FLK-LQ-tMl.title" = "Comprensione del Testo";
+
+/* Class = "UILabel"; text = "Insert question:"; ObjectID = "QZL-Wv-6kf"; */
+"QZL-Wv-6kf.text" = "Fai una domanda:";
+
+/* Class = "UIButton"; normalTitle = "Answer!"; ObjectID = "VOs-PQ-mcZ"; */
+"VOs-PQ-mcZ.normalTitle" = "Rispondi!";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.tff f f f f ehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiudaioque civiuda.tff f f f f ehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda"; ObjectID = "khs-g5-vFK"; */
+"khs-g5-vFK.text" = "";

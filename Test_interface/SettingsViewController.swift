@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var reset: UIButton!
     @IBOutlet weak var switcher: UISwitch!
+    @IBOutlet weak var switcher2: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +21,24 @@ class SettingsViewController: UIViewController {
         // Do any additional setup after loading the view.
         slider.setValue(sumperc, animated: true)
         switcher.setOn(dosave, animated: true)
+        switcher2.setOn(stc, animated: true)
     }
     
     @IBAction func switcherToggled(_ sender: UISwitch) {
         dosave = sender.isOn
         defaults.set(dosave, forKey: "dosave")
+    }
+    
+    @IBAction func switcherToggled2(_ sender: UISwitch) {
+        stc = sender.isOn
+        defaults.set(stc, forKey: "stc")
+        if(stc){
+            let altitle = NSLocalizedString("Attention", comment: "alertController title")
+            let almessage = NSLocalizedString("This is a beta feature.\nThe behaviour may be unpredictable.\nIt is strongly advised to use English text and ask questions in English accordingly.", comment: "alertController message")
+            let alert = UIAlertController(title: altitle, message: almessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
