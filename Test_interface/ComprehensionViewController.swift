@@ -35,13 +35,14 @@ class ComprehensionViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func answerAction(_ sender: UIButton) {
+        let altitle = NSLocalizedString("Answer", comment: "alertController title")
         let question = textField.text ?? ""
         let context = textView.text ?? ""
         DispatchQueue.global(qos: .userInitiated).async {
             let prediction = self.m.predict(question: question, context: context)
             print("🎉", prediction)
             DispatchQueue.main.async {
-                let alert = UIAlertController(title: "Answer", message: prediction.answer, preferredStyle: .alert)
+                let alert = UIAlertController(title: altitle, message: prediction.answer, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
