@@ -73,9 +73,9 @@
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
+	<false/>
 	<key>UISupportsDocumentBrowser</key>
-	<true/>
+	<false/>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 </dict>

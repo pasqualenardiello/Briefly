@@ -12,3 +12,9 @@
 
 /* alertController message */
 "This is a beta feature.\nThe behaviour may be unpredictable.\nIt is strongly advised to use English text and ask questions in English accordingly." = "Questa funzione è in beta.\nIl comportamento è imprevedibile.\nSi consiglia caldamente di usare testo in inglese e domande nella medesima lingua.";
+
+/* alertController title */
+"Cancel" = "Annulla";
+
+/* alertController title */
+"Delete" = "Cancella";
