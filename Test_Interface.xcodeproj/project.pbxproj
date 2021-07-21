@@ -19,6 +19,7 @@
 		38470E12269E2B9D00F1FDE3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38470E10269E2B9D00F1FDE3 /* LaunchScreen.storyboard */; };
 		38470E1D269E2B9D00F1FDE3 /* Test_InterfaceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38470E1C269E2B9D00F1FDE3 /* Test_InterfaceTests.swift */; };
 		38470E28269E2B9D00F1FDE3 /* Test_InterfaceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38470E27269E2B9D00F1FDE3 /* Test_InterfaceUITests.swift */; };
+		384E720526A870F500DDCF08 /* alertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E720426A870F500DDCF08 /* alertUtil.swift */; };
 		3874217B26A606B700723B81 /* ComprehensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3874217A26A606B700723B81 /* ComprehensionViewController.swift */; };
 		387421B126A60EE500723B81 /* requirements.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3874218F26A60EE500723B81 /* requirements.txt */; };
 		387421B226A60EE500723B81 /* gpt2.py in Resources */ = {isa = PBXBuildFile; fileRef = 3874219026A60EE500723B81 /* gpt2.py */; };
@@ -90,6 +91,7 @@
 		38470E23269E2B9D00F1FDE3 /* Test_InterfaceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test_InterfaceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38470E27269E2B9D00F1FDE3 /* Test_InterfaceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_InterfaceUITests.swift; sourceTree = "<group>"; };
 		38470E29269E2B9D00F1FDE3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		384E720426A870F500DDCF08 /* alertUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = alertUtil.swift; sourceTree = "<group>"; };
 		3874217A26A606B700723B81 /* ComprehensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ComprehensionViewController.swift; path = Test_interface/ComprehensionViewController.swift; sourceTree = SOURCE_ROOT; };
 		3874218F26A60EE500723B81 /* requirements.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = requirements.txt; sourceTree = "<group>"; };
 		3874219026A60EE500723B81 /* gpt2.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = gpt2.py; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				38DB8F3B26A754730029BCD1 /* PreviewCell.swift */,
 				387DDA9426A347BE001EA89D /* RecentsViewController.swift */,
 				3874217A26A606B700723B81 /* ComprehensionViewController.swift */,
+				384E720426A870F500DDCF08 /* alertUtil.swift */,
 				38470E08269E2B9C00F1FDE3 /* Main.storyboard */,
 				38470E0E269E2B9D00F1FDE3 /* Assets.xcassets */,
 				38470E10269E2B9D00F1FDE3 /* LaunchScreen.storyboard */,
@@ -557,6 +560,7 @@
 				387421BA26A60EE500723B81 /* BertForQuestionAnswering.swift in Sources */,
 				387421BD26A60EE500723B81 /* BertTokenizer.swift in Sources */,
 				38370CEF26A1CC7D002D76B7 /* SumViewController.swift in Sources */,
+				384E720526A870F500DDCF08 /* alertUtil.swift in Sources */,
 				38370CF026A1CC7D002D76B7 /* MenuViewController.swift in Sources */,
 				387DDA9526A347BE001EA89D /* RecentsViewController.swift in Sources */,
 				38370CF326A1CC7D002D76B7 /* TextViewController.swift in Sources */,

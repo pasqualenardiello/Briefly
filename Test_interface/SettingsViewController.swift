@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController {
             let altitle = NSLocalizedString("Attention", comment: "alertController title")
             let almessage = NSLocalizedString("This is a beta feature.\nThe behaviour may be unpredictable.\nIt is strongly advised to use English text and ask questions in English accordingly.", comment: "alertController message")
             let alert = UIAlertController(title: altitle, message: almessage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)
         }
     }

@@ -43,7 +43,7 @@ class ComprehensionViewController: UIViewController, UITextFieldDelegate {
             print("🎉", prediction)
             DispatchQueue.main.async {
                 let alert = UIAlertController(title: altitle, message: prediction.answer, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
         }
