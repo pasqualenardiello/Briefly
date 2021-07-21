@@ -23,14 +23,14 @@ class alertUtil{
         controller=nil;
         NotificationCenter.default.addObserver(self, selector: #selector(reinstateBackgroundTask), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
-    /*static func displayAlert(title:String,message:String){
+    static func displayAlert(title:String,message:String){
         let alert=UIAlertController(title: title, message: title, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default, handler: {(UIAlertAction) in
             alert.dismiss(animated: true, completion: nil)
         }))
         let key=UIApplication.shared.windows.first{$0.isKeyWindow}
         key?.rootViewController?.present(alert, animated: true, completion: nil)
-    }*/
+    }
     func displayAlert(title:String,message:String,time:Double){
         let alert=UIAlertController(title: title, message: message, preferredStyle: .alert)
         let controller=UIApplication.shared.windows.first{$0.isKeyWindow}?.rootViewController
@@ -38,7 +38,8 @@ class alertUtil{
         alertController=alert;
         remainingTime=time;
         originalMessage=alertController?.message ?? ""
-        alertTimer=Timer.scheduledTimer(timeInterval: time, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+        alertTimer=Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countDown), userInfo: nil, repeats: true)
+        alertTimer.tolerance=0.0;
         controller?.present(alert, animated: true, completion: nil)
     }
     

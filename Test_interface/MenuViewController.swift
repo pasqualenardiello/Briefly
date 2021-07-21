@@ -45,10 +45,8 @@ class MenuViewController: UIViewController, UIDocumentPickerDelegate {
     
     @IBAction func infoAction(_ sender: UIButton) {
         let altitle = NSLocalizedString("Info on Briefly", comment: "alertController title")
-        let almessage = NSLocalizedString("\nThis is a test app.\nThis app is designed as POC for the Apple©️ Foundation.\n\nGroup 6 composition:\n\nFrancesco Landi\nGabriele Lodato\nAndrea Massinelli\nPasquale Nardiello\nPasquale Rendina", comment: "alertController message")
-        let alert = UIAlertController(title: altitle, message: almessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        let almessage = NSLocalizedString("\nThis is a test app.\nThis app is designed as POC.\n\nGroup 6 composition:\n\nFrancesco Landi\nGabriele Lodato\nAndrea Massinelli\nPasquale Nardiello\nPasquale Rendina\n", comment: "alertController message")
+        let _: () = alertUtil.init().displayAlert(title: altitle, message: almessage, time: 8.0)
     }
     
     @IBAction func pdfAction(_ sender: Any) {

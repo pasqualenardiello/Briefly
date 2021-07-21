@@ -1,5 +1,5 @@
 /* alertController message */
-"\nThis is a test app.\nThis app is designed as POC for the Apple©️ Foundation.\n\nGroup 6 composition:\n\nFrancesco Landi\nGabriele Lodato\nAndrea Massinelli\nPasquale Nardiello\nPasquale Rendina" = "\nQuest'app è un test.\nQues'app è un POC per la Apple©️ Foundation.\n\nComposizione gruppo 6:\n\nFrancesco Landi\nGabriele Lodato\nAndrea Massinelli\nPasquale Nardiello\nPasquale Rendina";
+"\nThis is a test app.\nThis app is designed as POC.\n\nGroup 6 composition:\n\nFrancesco Landi\nGabriele Lodato\nAndrea Massinelli\nPasquale Nardiello\nPasquale Rendina\n" = "\nQuest'app è un test.\nQuest'app è un POC.\n\nComposizione gruppo 6:\n\nFrancesco Landi\nGabriele Lodato\nAndrea Massinelli\nPasquale Nardiello\nPasquale Rendina\n";
 
 /* alertController title */
 "Info on Briefly" = "Info su Briefly";
@@ -23,7 +23,7 @@
 "OK" = "OK";
 
 /* No comment provided by engineer. */
-"This will disappear in " = "This will disappear in ";
+"This will disappear in " = "L'alert scomparirà in ";
 
 /* No comment provided by engineer. */
 " second" = " secondo";
