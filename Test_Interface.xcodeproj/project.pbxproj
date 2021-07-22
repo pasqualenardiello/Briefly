@@ -48,6 +48,7 @@
 		387A0BE726A2103C00CD9DCB /* pdfUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A0BE626A2103C00CD9DCB /* pdfUtil.swift */; };
 		387A0BE826A218D500CD9DCB /* Pods_Test_Interface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C2C742BC72F39F198CB84EB /* Pods_Test_Interface.framework */; };
 		387DDA9526A347BE001EA89D /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387DDA9426A347BE001EA89D /* RecentsViewController.swift */; };
+		38C831E526A983F80021AC27 /* Screenshot 2021-07-22 at 12.44.52.png in Resources */ = {isa = PBXBuildFile; fileRef = 38C831E426A983F80021AC27 /* Screenshot 2021-07-22 at 12.44.52.png */; };
 		38DB8F3C26A754730029BCD1 /* PreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DB8F3B26A754730029BCD1 /* PreviewCell.swift */; };
 		6BB8C7D5B85225279920073E /* Pods_Test_Interface_Test_InterfaceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC3C7ADC464CFA4CE8398F9 /* Pods_Test_Interface_Test_InterfaceUITests.framework */; };
 		92FAF24270120327F8A21143 /* Pods_Test_InterfaceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5D8BA4B20D248B8E04F07E /* Pods_Test_InterfaceTests.framework */; };
@@ -123,6 +124,7 @@
 		3892D5F226A5B5B800FF41CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3892D5F326A5B5B800FF41CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		389A4C8326A6D74C00F88DF4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = ../Test_interface/it.lproj/Main.strings; sourceTree = "<group>"; };
+		38C831E426A983F80021AC27 /* Screenshot 2021-07-22 at 12.44.52.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2021-07-22 at 12.44.52.png"; sourceTree = "<group>"; };
 		38DB8F3B26A754730029BCD1 /* PreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PreviewCell.swift; path = Test_interface/PreviewCell.swift; sourceTree = SOURCE_ROOT; };
 		3C2C742BC72F39F198CB84EB /* Pods_Test_Interface.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_Interface.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BC3C7ADC464CFA4CE8398F9 /* Pods_Test_Interface_Test_InterfaceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Test_Interface_Test_InterfaceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +186,7 @@
 		38470E01269E2B9C00F1FDE3 /* Test_Interface */ = {
 			isa = PBXGroup;
 			children = (
+				38C831E426A983F80021AC27 /* Screenshot 2021-07-22 at 12.44.52.png */,
 				38777FAF26A6C61F000E55F2 /* Localizable.strings */,
 				387421C126A6133600723B81 /* Rsrcs */,
 				3874218E26A60EE500723B81 /* model_generation */,
@@ -417,6 +420,7 @@
 				387421B726A60EE500723B81 /* distilbert-validate.py in Resources */,
 				387421CF26A6133600723B81 /* gpt2-vocab.json in Resources */,
 				387421B426A60EE500723B81 /* .gitignore in Resources */,
+				38C831E526A983F80021AC27 /* Screenshot 2021-07-22 at 12.44.52.png in Resources */,
 				38470E0F269E2B9D00F1FDE3 /* Assets.xcassets in Resources */,
 				38777FAD26A6C61F000E55F2 /* Localizable.strings in Resources */,
 				387421CD26A6133600723B81 /* gpt2-merges.txt in Resources */,
