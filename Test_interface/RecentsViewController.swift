@@ -32,6 +32,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         for f in self.urls{
             self.previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf"))
         }
+        previewVC.reloadData()
         self.generatePreviews()
     }
     
@@ -60,7 +61,8 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                     self.urls.remove(at: indexPath.row)
                     self.previews.remove(at: indexPath.row)
                     self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
-                    //self.tableView.reloadData()
+                    self.tableView.reloadData()
+                    self.previewVC.reloadData()
                 }))
                 alert.addAction(UIAlertAction(title: altitle2, style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
@@ -117,7 +119,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return previews.count
+        return urls.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
