@@ -9,16 +9,18 @@ import UIKit
 import QuickLook
 import PDFKit
 
+//let refreshControl = UIRefreshControl()
+
 class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var refreshButton: UIButton!
     var urls : [URL] = []
     var previews: [Preview] = []
     let previewVC = QLPreviewController()
     let thumbnailSize = CGSize(width: 60, height: 90)
     let scale = UIScreen.main.scale
+    var refControl = UIRefreshControl()
     
-    @IBAction func refreshAction(_ sender: UIButton) {
+    @objc func refresh(_ sender: AnyObject) {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         let docURL = URL(string: documentsDirectory)!
@@ -34,6 +36,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         }
         previewVC.reloadData()
         self.generatePreviews()
+        refControl.endRefreshing()
     }
     
     func setupLongPressGesture() {
@@ -97,6 +100,8 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         previewVC.dataSource = self
         generatePreviews()
         setupLongPressGesture()
+        refControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.refreshControl = refControl
     }
     
     func generatePreviews() {
