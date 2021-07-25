@@ -79,8 +79,9 @@ class SumViewController: UIViewController {
                         }
                     }
                     print(pdfUtil.textToPDF(textContent: self.textView.text, fileName: t! + "(\(c))")!)
-                    alert.dismiss(animated: true, completion: nil)
-                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                    alert.dismiss(animated: true, completion: { () -> Void in
+                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                    })
                 }
             }))
             alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel alertController title"), style: .destructive, handler: { alertaction -> Void in
