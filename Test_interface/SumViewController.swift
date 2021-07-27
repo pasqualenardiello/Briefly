@@ -15,6 +15,7 @@ class SumViewController: UIViewController {
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
     var txt: [String] = []
+    var ttl: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,47 +48,31 @@ class SumViewController: UIViewController {
             format.dateFormat = "yyyy-MM-dd_HH:mm:ss"
             let timestamp = format.string(from: date)
             */
-            let altitle = NSLocalizedString("Saving", comment: "text alertController title")
-            let almessage = NSLocalizedString("Enter PDF name:", comment: "text alertController message")
-            let alert = UIAlertController(title: altitle, message: almessage, preferredStyle: .alert)
-            alert.addTextField(configurationHandler: nil)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { alertaction -> Void in
-                var t = alert.textFields![0].text
-                if(t!.isEmpty || t == nil){
-                    t = "FILE"
+            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+            let documentsDirectory = paths[0]
+            let docURL = URL(string: documentsDirectory)!
+            let dataPath = docURL.appendingPathComponent("Briefly").appendingPathComponent(ttl!+".pdf")
+            if !FileManager.default.fileExists(atPath: dataPath.path) {
+                print(pdfUtil.textToPDF(textContent: self.textView.text, fileName: ttl!)!)
+            }
+            else {
+                var files : [String] = []
+                do {
+                    try files = FileManager.default.contentsOfDirectory(atPath: docURL.appendingPathComponent("Briefly").path)
+                } catch {
+                    print(error.localizedDescription)
                 }
-                let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-                let documentsDirectory = paths[0]
-                let docURL = URL(string: documentsDirectory)!
-                let dataPath = docURL.appendingPathComponent("Briefly").appendingPathComponent(t!+".pdf")
-                if !FileManager.default.fileExists(atPath: dataPath.path) {
-                    print(pdfUtil.textToPDF(textContent: self.textView.text, fileName: t!)!)
-                }
-                else {
-                    var files : [String] = []
-                    do {
-                        try files = FileManager.default.contentsOfDirectory(atPath: docURL.appendingPathComponent("Briefly").path)
-                    } catch {
-                        print(error.localizedDescription)
+                var c = 1
+                for i in files{
+                    let j = i.components(separatedBy: "/")
+                    let sz = j.count
+                    if j[sz-1].contains(ttl!){
+                        c += 1
                     }
-                    var c = 1
-                    for i in files{
-                        let j = i.components(separatedBy: "/")
-                        let sz = j.count
-                        if j[sz-1].contains(t!){
-                            c += 1
-                        }
-                    }
-                    print(pdfUtil.textToPDF(textContent: self.textView.text, fileName: t! + "(\(c))")!)
-                    alert.dismiss(animated: true, completion: { () -> Void in
-                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                    })
                 }
-            }))
-            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel alertController title"), style: .destructive, handler: { alertaction -> Void in
-                alert.dismiss(animated: true, completion: nil)
-            }))
-            self.present(alert, animated: true, completion: nil)
+                print(pdfUtil.textToPDF(textContent: self.textView.text, fileName: ttl! + "(\(c))")!)
+            }
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         }
         else {
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)

@@ -18,6 +18,7 @@ class TextViewController: UIViewController {
     
     var txt: String?
     var summarisedContent: [String] = []
+    var ttl: String?
     
     @IBAction func compAction(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "ComprehensionSegue", sender: self)
@@ -25,10 +26,32 @@ class TextViewController: UIViewController {
     
     @IBAction func sumAction(_ sender: UIBarButtonItem) {
         summarisedContent = []
-        Reductio.summarize(text: textView.text, compression: sumperc) { phrases in
-            summarisedContent = phrases
+        if dosave {
+            let altitle = NSLocalizedString("Saving", comment: "text alertController title")
+            let almessage = NSLocalizedString("Enter PDF name:", comment: "text alertController message")
+            let alert = UIAlertController(title: altitle, message: almessage, preferredStyle: .alert)
+            alert.addTextField(configurationHandler: nil)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { alertaction -> Void in
+                self.ttl = alert.textFields![0].text!
+                if(self.ttl!.isEmpty || self.ttl == nil){
+                    self.ttl = "FILE"
+                }
+                Reductio.summarize(text: self.textView.text, compression: sumperc) { phrases in
+                    self.summarisedContent = phrases
+                }
+                self.performSegue(withIdentifier: "SumSegue", sender: self)
+            }))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "cancel alertController title"), style: .destructive, handler: { alertaction -> Void in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
-        self.performSegue(withIdentifier: "SumSegue", sender: self)
+        else {
+            Reductio.summarize(text: textView.text, compression: sumperc) { phrases in
+                summarisedContent = phrases
+            }
+            self.performSegue(withIdentifier: "SumSegue", sender: self)
+        }
     }
     
     @IBAction func cancelAction(_ sender: UIBarButtonItem) {
@@ -60,6 +83,7 @@ class TextViewController: UIViewController {
         if(segue.identifier == "SumSegue"){
             let sumseg = segue.destination as! SumViewController
             sumseg.txt = summarisedContent
+            sumseg.ttl = ttl
         }
         else if(segue.identifier == "ComprehensionSegue"){
             let compsegue = segue.destination as! ComprehensionViewController
