@@ -69,10 +69,12 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                     self.tableView.reloadData()
                     self.previewVC.reloadData()
                 }))
-                alert.addAction(UIAlertAction(title: altitle3, style: .default, handler: { action in
-                    self.txt = pdfUtil.readPDFpages(url: self.urls[indexPath.row], pages: .all)
-                    self.performSegue(withIdentifier: "RecCompSegue", sender: self)
-                }))
+                if stc {
+                    alert.addAction(UIAlertAction(title: altitle3, style: .default, handler: { action in
+                        self.txt = pdfUtil.readPDFpages(url: self.urls[indexPath.row], pages: .all)
+                        self.performSegue(withIdentifier: "RecCompSegue", sender: self)
+                    }))
+                }
                 alert.addAction(UIAlertAction(title: altitle2, style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
             }
