@@ -39,3 +39,6 @@
 
 /* text alertController title */
 "Saving" = "Salvataggio";
+
+/* alertController title */
+"Text Comprehension" = "Comprensione del Testo";

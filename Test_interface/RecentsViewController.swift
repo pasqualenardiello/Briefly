@@ -19,6 +19,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     let thumbnailSize = CGSize(width: 60, height: 90)
     let scale = UIScreen.main.scale
     var refControl = UIRefreshControl()
+    var txt : String?
     
     @objc func refresh(_ sender: AnyObject) {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -52,6 +53,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
             if let indexPath = tableView.indexPathForRow(at: touchPoint) {
                 let altitle = NSLocalizedString("Delete", comment: "alertController title")
                 let altitle2 = NSLocalizedString("Cancel", comment: "alertController title")
+                let altitle3 = NSLocalizedString("Text Comprehension", comment: "alertController title")
                 let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: altitle, style: .destructive, handler: { action in
                     if FileManager.default.fileExists(atPath: self.urls[indexPath.row].path) {
@@ -66,6 +68,10 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                     self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
                     self.tableView.reloadData()
                     self.previewVC.reloadData()
+                }))
+                alert.addAction(UIAlertAction(title: altitle3, style: .default, handler: { action in
+                    self.txt = pdfUtil.readPDFpages(url: self.urls[indexPath.row], pages: .all)
+                    self.performSegue(withIdentifier: "RecCompSegue", sender: self)
                 }))
                 alert.addAction(UIAlertAction(title: altitle2, style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
@@ -142,16 +148,17 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "RecCompSegue"){
+                    let txtseg = segue.destination as! ComprehensionViewController
+                    txtseg.txt = txt
+        }
     }
-    */
 
 }
 

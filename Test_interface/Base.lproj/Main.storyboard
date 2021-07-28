@@ -16,7 +16,7 @@
                 <pageViewController storyboardIdentifier="initial" autoresizesArchivedViewToFullSize="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="tbP-Hx-Qux" customClass="MyViewController" customModule="Test_Interface" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2q-ra-mF9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1274" y="-632"/>
+            <point key="canvasLocation" x="-1274" y="-672"/>
         </scene>
         <!--Recents View Controller-->
         <scene sceneID="xSr-9a-qqC">
@@ -79,6 +79,9 @@
                             <outlet property="delegate" destination="CGE-Eg-eAY" id="D5n-LI-h0C"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="Wjz-tp-fE0" kind="show" identifier="RecCompSegue" id="kCp-Sv-Qcn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTG-Y9-HLG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -280,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MuK-sc-Igq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865.21739130434787" y="849.77678571428567"/>
+            <point key="canvasLocation" x="61" y="-672"/>
         </scene>
         <!--Comprehension View Controller-->
         <scene sceneID="wtU-KD-OO3">
@@ -351,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWI-y1-yYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60.869565217391312" y="849.77678571428567"/>
+            <point key="canvasLocation" x="-865" y="834"/>
         </scene>
         <!--Text View Controller-->
         <scene sceneID="8zD-Zg-KK2">
@@ -478,6 +481,9 @@
             <point key="canvasLocation" x="971.01449275362324" y="101.78571428571428"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="kCp-Sv-Qcn"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.on.rectangle.fill" catalog="system" width="128" height="96"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>

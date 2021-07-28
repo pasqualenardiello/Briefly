@@ -74,7 +74,7 @@ class MenuViewController: UIViewController, UIDocumentPickerDelegate {
         if(segue.identifier == "TextSegue"){
                     let txtseg = segue.destination as! TextViewController
                     txtseg.txt = recText
-            }
+        }
     }
     
     private func processImage(_ image: UIImage) {
@@ -127,7 +127,7 @@ class MenuViewController: UIViewController, UIDocumentPickerDelegate {
         recText = pdfUtil.readPDFpages(url: urls[0], pages: .all);
         controller.dismiss(animated: true){
             self.performSegue(withIdentifier: "TextSegue", sender: self)
-            }
+        }
     }
     
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController){
