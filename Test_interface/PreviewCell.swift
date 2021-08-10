@@ -19,7 +19,7 @@ class PreviewCell: UITableViewCell {
 
     func configure(with preview: Preview) {
         titleLabel.text = preview.displayName
-        subtitleLabel.text = preview.formattedFileName
+        subtitleLabel.text = preview.previewCategory
         
         if let thumb = preview.thumbnail {
             thumbnailImageView.image = thumb

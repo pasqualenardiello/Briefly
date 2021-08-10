@@ -12,6 +12,7 @@ import VisionKit
 var sumperc : Float = 0.5
 var dosave : Bool = true
 var stc : Bool = false
+var sumai : Bool = false
 let defaults = UserDefaults.standard
 
 class MyViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
@@ -50,6 +51,7 @@ class MyViewController: UIPageViewController, UIPageViewControllerDataSource, UI
         }
         dosave = defaults.bool(forKey: "dosave")
         stc = defaults.bool(forKey: "stc")
+        sumai = defaults.bool(forKey: "sumai")
         if let firstViewController = orderedViewControllers.first {
                 setViewControllers([firstViewController],
                     direction: .forward,

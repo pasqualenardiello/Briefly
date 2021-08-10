@@ -42,3 +42,31 @@
 
 /* alertController title */
 "Text Comprehension" = "Comprensione del Testo";
+
+/* category string */
+"Business" = "Business";
+
+/* category string */
+"Entertainment" = "Intrattenimento";
+
+/* category string */
+"Politics" = "Politica";
+
+/* category string */
+"Sports" = "Sport";
+
+/* category string */
+"Technology" = "Tecnologia";
+
+/* category string */
+"Uncategorized" = "Sconosciuto";
+
+/* Internet alert */
+"Error" = "Errore";
+
+/* Internet alert */
+"Internet unavailable.\nPlease connect to the network." = "Internet non presente.\nSi prega di connettersi alla rete.";
+
+/* alertController3 message */
+"This is a beta feature.\nIn order to use this function properly, make sure your device is connected to the network." = "Questa funzione è in beta.\nPer usare correttamente questa funzione, assicurati di essere connesso alla rete.";
+

@@ -241,7 +241,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Beta) Show TC:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pW-5d-LxW">
-                                <rect key="frame" x="52" y="472" width="270" height="37"/>
+                                <rect key="frame" x="52" y="472" width="281" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
                                 <color key="textColor" red="0.15809506179999999" green="0.22779271009999999" blue="0.38825470210000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -268,6 +268,20 @@
                                     <action selector="switcherToggled2:" destination="cfJ-h1-yLI" eventType="valueChanged" id="FVS-vu-JtR"/>
                                 </connections>
                             </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="(Beta) AI for summary:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDQ-3v-vjc">
+                                <rect key="frame" x="52" y="526" width="281" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                <color key="textColor" red="0.15809506179999999" green="0.22779271009999999" blue="0.38825470210000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdy-p2-HQe">
+                                <rect key="frame" x="315" y="528" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switcherToggled3:" destination="cfJ-h1-yLI" eventType="valueChanged" id="B6k-BA-pq3"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cJf-tL-jdE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -279,6 +293,7 @@
                         <outlet property="slider" destination="dQg-be-Shd" id="ixX-UG-TJb"/>
                         <outlet property="switcher" destination="bbe-fd-5HZ" id="Vdr-uA-Lc4"/>
                         <outlet property="switcher2" destination="ohc-sr-oeM" id="Wet-NZ-BaQ"/>
+                        <outlet property="switcher3" destination="xdy-p2-HQe" id="6oe-Je-jOo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MuK-sc-Igq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

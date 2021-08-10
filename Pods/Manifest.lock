@@ -1,16 +1,20 @@
 PODS:
+  - DocumentClassifier (1.2.0)
   - Reductio (1.4.0)
 
 DEPENDENCIES:
+  - DocumentClassifier (= 1.2.0)
   - Reductio
 
 SPEC REPOS:
   trunk:
+    - DocumentClassifier
     - Reductio
 
 SPEC CHECKSUMS:
+  DocumentClassifier: a32b4d0dbcd0c38ec9ef16949c184923e16d818a
   Reductio: bb6fe437dc1025f766d1c39161029efad2220cc9
 
-PODFILE CHECKSUM: 1fce30b8bede0c3873eae6b1de05d54eb1acce18
+PODFILE CHECKSUM: d4a05291ee3cc8ad80b1267c45edfc347253c1e9
 
 COCOAPODS: 1.10.1

@@ -8,10 +8,11 @@
 import UIKit
 import QuickLook
 import PDFKit
+import DocumentClassifier
 
 //let refreshControl = UIRefreshControl()
 
-class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate {
+class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate{
     
     var urls : [URL] = []
     var previews: [Preview] = []
@@ -19,7 +20,8 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     let thumbnailSize = CGSize(width: 60, height: 90)
     let scale = UIScreen.main.scale
     var refControl = UIRefreshControl()
-    var txt : String?
+    var txt: String?
+    let classifier = DocumentClassifier()
     
     @objc func refresh(_ sender: AnyObject) {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -33,7 +35,10 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         }
         self.previews.removeAll()
         for f in self.urls{
-            self.previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf"))
+            let txtcont = pdfUtil.readPDF(url: f)
+            guard let classification = classifier.classify(txtcont) else { return }
+            let classcat = classification.prediction.category.rawValue
+            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat))
         }
         previewVC.reloadData()
         self.generatePreviews()
@@ -103,7 +108,10 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
             print("ERRORE")
         }
         for f in urls{
-            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf"))
+            let txtcont = pdfUtil.readPDF(url: f)
+            guard let classification = classifier.classify(txtcont) else { return }
+            let classcat = classification.prediction.category.rawValue
+            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat))
         }
         previewVC.dataSource = self
         generatePreviews()
@@ -169,11 +177,38 @@ class Preview: NSObject, QLPreviewItem {
     let fileName: String
     let fileExtension: String
     var thumbnail: UIImage?
+    var category: String?
     
     init(displayName: String, fileName: String, fileExtension: String) {
         self.displayName = displayName
         self.fileName = fileName
         self.fileExtension = fileExtension
+        self.category = NSLocalizedString("Uncategorized", comment: "category string")
+        super.init()
+    }
+    
+    init(displayName: String, fileName: String, fileExtension: String, category: String) {
+        self.displayName = displayName
+        self.fileName = fileName
+        self.fileExtension = fileExtension
+        if category == "Business"{
+            self.category = NSLocalizedString("Business", comment: "category string")
+        }
+        else if category == "Entertainment"{
+            self.category = NSLocalizedString("Entertainment", comment: "category string")
+        }
+        else if category == "Politics"{
+            self.category = NSLocalizedString("Politics", comment: "category string")
+        }
+        else if category == "Sports"{
+            self.category = NSLocalizedString("Sports", comment: "category string")
+        }
+        else if category == "Technology"{
+            self.category = NSLocalizedString("Technology", comment: "category string")
+        }
+        else {
+            self.category = NSLocalizedString("Uncategorized", comment: "category string")
+        }
         super.init()
     }
     
@@ -183,6 +218,10 @@ class Preview: NSObject, QLPreviewItem {
     
     var formattedFileName: String {
         return "\(fileName).\(fileExtension)"
+    }
+    
+    var previewCategory: String? {
+        return category
     }
     
     var previewItemURL: URL? {

@@ -14,6 +14,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var reset: UIButton!
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet weak var switcher2: UISwitch!
+    @IBOutlet weak var switcher3: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,19 @@ class SettingsViewController: UIViewController {
         slider.setValue(sumperc, animated: true)
         switcher.setOn(dosave, animated: true)
         switcher2.setOn(stc, animated: true)
+        switcher3.setOn(sumai, animated: true)
+    }
+    
+    @IBAction func switcherToggled3(_ sender: UISwitch) {
+        sumai = sender.isOn
+        defaults.set(sumai, forKey: "sumai")
+        if(sumai){
+            let altitle = NSLocalizedString("Attention", comment: "alertController title")
+            let almessage = NSLocalizedString("This is a beta feature.\nIn order to use this function properly, make sure your device is connected to the network.", comment: "alertController3 message")
+            let alert = UIAlertController(title: altitle, message: almessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func switcherToggled(_ sender: UISwitch) {
