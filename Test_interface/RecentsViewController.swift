@@ -12,7 +12,7 @@ import DocumentClassifier
 
 //let refreshControl = UIRefreshControl()
 
-class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate{
+class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate, UISearchResultsUpdating, UISearchBarDelegate{
     
     var urls : [URL] = []
     var previews: [Preview] = []
@@ -22,6 +22,51 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     var refControl = UIRefreshControl()
     var txt: String?
     let classifier = DocumentClassifier()
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredpreviews: [Preview] = []
+    let scopes : [String] = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Entertainment", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sports", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
+    
+    func searchBar(_ searchBar: UISearchBar,
+          selectedScopeButtonIndexDidChange selectedScope: Int) {
+        let category = scopes[selectedScope]
+        filterContentForSearchText(searchBar.text!, category: category)
+      }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        searchController.isActive = false
+    }
+    
+    var isFiltering: Bool {
+        let searchBarScopeIsFiltering =
+            searchController.searchBar.selectedScopeButtonIndex != 0
+          return searchController.isActive &&
+            (!isSearchBarEmpty || searchBarScopeIsFiltering)
+    }
+    
+    func filterContentForSearchText(_ searchText: String,
+                                    category: String = "") {
+      filteredpreviews = previews.filter { (preview: Preview) -> Bool in
+        //return preview.displayName.lowercased().contains(searchText.lowercased())
+        let doesCategoryMatch = category == "All" || preview.category == category
+        if isSearchBarEmpty {
+              return doesCategoryMatch
+            } else {
+                return doesCategoryMatch && preview.displayName.lowercased()
+                .contains(searchText.lowercased())
+            }
+      }
+      tableView.reloadData()
+    }
+    
+    var isSearchBarEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        let category = scopes[searchBar.selectedScopeButtonIndex]
+        filterContentForSearchText(searchBar.text!, category: category)
+      }
     
     @objc func refresh(_ sender: AnyObject) {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -38,7 +83,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
             let txtcont = pdfUtil.readPDF(url: f)
             guard let classification = classifier.classify(txtcont) else { return }
             let classcat = classification.prediction.category.rawValue
-            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat))
+            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat, url: f))
         }
         previewVC.reloadData()
         self.generatePreviews()
@@ -68,7 +113,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                             print(error.localizedDescription)
                         }
                     }
-                    self.urls.remove(at: indexPath.row)
+                    //self.urls.remove(at: indexPath.row)
                     self.previews.remove(at: indexPath.row)
                     self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
                     self.tableView.reloadData()
@@ -87,17 +132,26 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     }
     
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        return urls.count
+        return previews.count
     }
     
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return urls[index] as QLPreviewItem
+        return previews[index].url as QLPreviewItem
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = NSLocalizedString("Search...", comment: "search string")
+        navigationItem.searchController = searchController
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
+        searchController.searchBar.scopeButtonTitles = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Entertainment", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sports", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
+        searchController.searchBar.delegate = self
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         let docURL = URL(string: documentsDirectory)!
@@ -111,7 +165,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
             let txtcont = pdfUtil.readPDF(url: f)
             guard let classification = classifier.classify(txtcont) else { return }
             let classcat = classification.prediction.category.rawValue
-            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat))
+            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat, url: f))
         }
         previewVC.dataSource = self
         generatePreviews()
@@ -140,14 +194,22 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return urls.count
+        if isFiltering {
+            return filteredpreviews.count
+          }
+        return previews.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PreviewCell else {
             preconditionFailure()
         }
-        let preview = previews[indexPath.row]
+        let preview : Preview
+        if isFiltering {
+            preview = filteredpreviews[indexPath.row]
+          } else {
+            preview = previews[indexPath.row]
+          }
         cell.configure(with: preview)
         return cell
     }
@@ -178,19 +240,22 @@ class Preview: NSObject, QLPreviewItem {
     let fileExtension: String
     var thumbnail: UIImage?
     var category: String?
+    let url: URL
     
-    init(displayName: String, fileName: String, fileExtension: String) {
+    init(displayName: String, fileName: String, fileExtension: String, url: URL) {
         self.displayName = displayName
         self.fileName = fileName
         self.fileExtension = fileExtension
         self.category = NSLocalizedString("Uncategorized", comment: "category string")
+        self.url = url
         super.init()
     }
     
-    init(displayName: String, fileName: String, fileExtension: String, category: String) {
+    init(displayName: String, fileName: String, fileExtension: String, category: String, url: URL) {
         self.displayName = displayName
         self.fileName = fileName
         self.fileExtension = fileExtension
+        self.url = url
         if category == "Business"{
             self.category = NSLocalizedString("Business", comment: "category string")
         }

@@ -70,3 +70,9 @@
 /* alertController3 message */
 "This is a beta feature.\nIn order to use this function properly, make sure your device is connected to the network." = "Questa funzione è in beta.\nPer usare correttamente questa funzione, assicurati di essere connesso alla rete.";
 
+/* category string */
+"All" = "Tutti";
+
+/* search string */
+"Search..." = "Cerca...";
+
