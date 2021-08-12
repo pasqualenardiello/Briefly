@@ -12,7 +12,7 @@ import DocumentClassifier
 
 //let refreshControl = UIRefreshControl()
 
-class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate, UISearchResultsUpdating, UISearchBarDelegate{
+class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate{
     
     var urls : [URL] = []
     var previews: [Preview] = []
@@ -25,6 +25,22 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     let searchController = UISearchController(searchResultsController: nil)
     var filteredpreviews: [Preview] = []
     let scopes : [String] = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Entertainment", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sports", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
+    
+    func resizeTableViewHeaderHeight() {
+        let headerView = self.tableView.tableHeaderView
+        var frame = headerView?.frame
+        frame!.size.height = 56
+        headerView?.frame = frame!
+        self.tableView.tableHeaderView = headerView
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        resizeTableViewHeaderHeight()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        resizeTableViewHeaderHeight()
+    }
     
     func searchBar(_ searchBar: UISearchBar,
           selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -152,6 +168,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         definesPresentationContext = true
         searchController.searchBar.scopeButtonTitles = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Entertainment", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sports", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         let docURL = URL(string: documentsDirectory)!
