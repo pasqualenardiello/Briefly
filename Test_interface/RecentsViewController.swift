@@ -60,10 +60,9 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     }
     
     func filterContentForSearchText(_ searchText: String,
-                                    category: String = "") {
+                                    category: String = "All") {
       filteredpreviews = previews.filter { (preview: Preview) -> Bool in
-        //return preview.displayName.lowercased().contains(searchText.lowercased())
-        let doesCategoryMatch = category == "All" || preview.category == category
+        let doesCategoryMatch = /*(category == "All" || */preview.category == category
         if isSearchBarEmpty {
               return doesCategoryMatch
             } else {
@@ -80,8 +79,15 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        let category = scopes[searchBar.selectedScopeButtonIndex]
-        filterContentForSearchText(searchBar.text!, category: category)
+        if searchBar.selectedScopeButtonIndex == 0 {
+            filteredpreviews = previews.filter { (preview: Preview) -> Bool in
+                return preview.displayName.lowercased().contains(searchBar.text!.lowercased())
+            }
+            tableView.reloadData()
+        } else {
+            let category = scopes[searchBar.selectedScopeButtonIndex]
+            filterContentForSearchText(searchBar.text!, category: category)
+        }
       }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -101,6 +107,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
             let classcat = classification.prediction.category.rawValue
             previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat, url: f))
         }
+        updateSearchResults(for: searchController)
         previewVC.reloadData()
         self.generatePreviews()
         refControl.endRefreshing()
@@ -130,7 +137,13 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                         }
                     }
                     //self.urls.remove(at: indexPath.row)
-                    self.previews.remove(at: indexPath.row)
+                    if self.isFiltering {
+                        let o : Preview = self.filteredpreviews[indexPath.row]
+                        self.filteredpreviews.remove(at: indexPath.row)
+                        self.previews.remove(at: self.previews.firstIndex(of: o)!)
+                    } else {
+                        self.previews.remove(at: indexPath.row)
+                    }
                     self.tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.fade)
                     self.tableView.reloadData()
                     self.previewVC.reloadData()
@@ -232,7 +245,12 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        previewVC.currentPreviewItemIndex = indexPath.row
+        if isFiltering {
+            let o = previews.firstIndex(of: filteredpreviews[indexPath.row])
+            previewVC.currentPreviewItemIndex = o!
+        } else {
+            previewVC.currentPreviewItemIndex = indexPath.row
+        }
         present(previewVC, animated: true, completion: nil)
         tableView.deselectRow(at: indexPath, animated: true)
     }
