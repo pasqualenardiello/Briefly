@@ -42,6 +42,14 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         resizeTableViewHeaderHeight()
     }
     
+    func didPresentSearchController(_ searchController: UISearchController) {
+        let headerView = self.tableView.tableHeaderView
+        var frame = headerView?.frame
+        frame!.size.height = 112
+        headerView?.frame = frame!
+        self.tableView.tableHeaderView = headerView
+    }
+    
     func searchBar(_ searchBar: UISearchBar,
           selectedScopeButtonIndexDidChange selectedScope: Int) {
         let category = scopes[selectedScope]
