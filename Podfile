@@ -5,7 +5,6 @@ target 'Test_Interface' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Reductio'
-  pod 'DocumentClassifier', '1.2.0'
 
   # Pods for Test_Interface
 

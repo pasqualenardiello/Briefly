@@ -31,9 +31,6 @@
 /* No comment provided by engineer. */
 " seconds" = " secondi";
 
-/* cancel alertController title */
-"Cancel" = "Annulla";
-
 /* text alertController message */
 "Enter PDF name:" = "Inserisci nome PDF:";
 
@@ -76,3 +73,14 @@
 /* search string */
 "Search..." = "Cerca...";
 
+/* category string */
+"Food" = "Cibo";
+
+/* category string */
+"Medical" = "Medicina";
+
+/* category string */
+"Sport" = "Sport";
+
+/* category string */
+"Science" = "Scienza";

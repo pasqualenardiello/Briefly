@@ -8,9 +8,8 @@
 import UIKit
 import QuickLook
 import PDFKit
-import DocumentClassifier
-
-//let refreshControl = UIRefreshControl()
+import NaturalLanguage
+import CoreML
 
 class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate{
     
@@ -21,10 +20,18 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     let scale = UIScreen.main.scale
     var refControl = UIRefreshControl()
     var txt: String?
-    let classifier = DocumentClassifier()
+    var model : DocumentClassifier_1!
     let searchController = UISearchController(searchResultsController: nil)
     var filteredpreviews: [Preview] = []
-    let scopes : [String] = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Entertainment", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sports", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
+    let scopes : [String] = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Food", comment: "category string"), NSLocalizedString("Medical", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sport", comment: "category string"), NSLocalizedString("Science", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
+    
+    /*override func viewWillAppear(_ animated: Bool) {
+        do{
+            let config=MLModelConfiguration();
+            model=try DocumentClassifier_1(configuration: config);
+        } catch{
+        }
+    }*/
     
     func resizeTableViewHeaderHeight() {
         let headerView = self.tableView.tableHeaderView
@@ -111,9 +118,9 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         self.previews.removeAll()
         for f in self.urls{
             let txtcont = pdfUtil.readPDF(url: f)
-            guard let classification = classifier.classify(txtcont) else { return }
-            let classcat = classification.prediction.category.rawValue
-            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat, url: f))
+            let prediction=try? model.prediction(text: txtcont.lowercased().replacingOccurrences(of: "\n", with: " "))
+            let predictionData=prediction!.label;
+            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: predictionData, url: f))
         }
         updateSearchResults(for: searchController)
         previewVC.reloadData()
@@ -144,7 +151,6 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                             print(error.localizedDescription)
                         }
                     }
-                    //self.urls.remove(at: indexPath.row)
                     if self.isFiltering {
                         let o : Preview = self.filteredpreviews[indexPath.row]
                         self.filteredpreviews.remove(at: indexPath.row)
@@ -187,9 +193,14 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         searchController.searchBar.sizeToFit()
         tableView.tableHeaderView = searchController.searchBar
         definesPresentationContext = true
-        searchController.searchBar.scopeButtonTitles = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Entertainment", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sports", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
+        searchController.searchBar.scopeButtonTitles = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Food", comment: "category string"), NSLocalizedString("Medical", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sport", comment: "category string"), NSLocalizedString("Science", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
         searchController.searchBar.delegate = self
         searchController.delegate = self
+        do{
+            let config=MLModelConfiguration();
+            model=try DocumentClassifier_1(configuration: config);
+        } catch{
+        }
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentsDirectory = paths[0]
         let docURL = URL(string: documentsDirectory)!
@@ -201,9 +212,9 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         }
         for f in urls{
             let txtcont = pdfUtil.readPDF(url: f)
-            guard let classification = classifier.classify(txtcont) else { return }
-            let classcat = classification.prediction.category.rawValue
-            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: classcat, url: f))
+            let prediction=try? model.prediction(text: txtcont.lowercased().replacingOccurrences(of: "\n", with: " "))
+            let predictionData=prediction!.label;
+            previews.append(Preview(displayName: f.lastPathComponent.components(separatedBy: ".")[0], fileName: f.lastPathComponent.components(separatedBy: ".")[0], fileExtension: "pdf", category: predictionData, url: f))
         }
         previewVC.dataSource = self
         generatePreviews()
@@ -302,14 +313,20 @@ class Preview: NSObject, QLPreviewItem {
         if category == "Business"{
             self.category = NSLocalizedString("Business", comment: "category string")
         }
-        else if category == "Entertainment"{
-            self.category = NSLocalizedString("Entertainment", comment: "category string")
+        else if category == "Food"{
+            self.category = NSLocalizedString("Food", comment: "category string")
+        }
+        else if category == "Medical"{
+            self.category = NSLocalizedString("Medical", comment: "category string")
         }
         else if category == "Politics"{
             self.category = NSLocalizedString("Politics", comment: "category string")
         }
-        else if category == "Sports"{
-            self.category = NSLocalizedString("Sports", comment: "category string")
+        else if category == "Sport"{
+            self.category = NSLocalizedString("Sport", comment: "category string")
+        }
+        else if category == "Science"{
+            self.category = NSLocalizedString("Science", comment: "category string")
         }
         else if category == "Technology"{
             self.category = NSLocalizedString("Technology", comment: "category string")
