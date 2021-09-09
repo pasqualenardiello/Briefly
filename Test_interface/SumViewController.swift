@@ -21,6 +21,10 @@ class SumViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if buttonstatus == true{
+            doneButton.isEnabled = false
+            buttonstatus = false
+        }
         textView.text = ""
         for i in txt{
             textView.text += i
@@ -43,11 +47,6 @@ class SumViewController: UIViewController {
     
     @IBAction func doneAction(_ sender: Any) {
         if (dosave){
-            /*let date = Date()
-            let format = DateFormatter()
-            format.dateFormat = "yyyy-MM-dd_HH:mm:ss"
-            let timestamp = format.string(from: date)
-            */
             let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
             let documentsDirectory = paths[0]
             let docURL = URL(string: documentsDirectory)!

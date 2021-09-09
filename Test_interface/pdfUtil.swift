@@ -133,6 +133,27 @@ class pdfUtil{
         pdfData.write(to: outputPDFUrl, atomically: true)
         return outputPDFUrl
     }
+    static func textToPDF(textContent:String,fileName:String,url:URL)->URL?{
+        let printFormatter=UISimpleTextPrintFormatter(text: textContent)
+        let renderer=UIPrintPageRenderer()
+        renderer.addPrintFormatter(printFormatter, startingAtPageAt: 0)
+        let pageSize=CGRect(x: 0, y: 0, width: 595.2, height: 841.8)
+        let printSize=CGRect(x: 35, y: 35, width: 555.2, height: 801.8)
+        renderer.setValue(pageSize, forKey: "paperRect")
+        renderer.setValue(printSize, forKey: "printableRect")
+        let pdfData=NSMutableData()
+        let pdfMetaData = [kCGPDFContextCreator: "Briefly",
+                           kCGPDFContextAuthor: UIDevice.current.name,
+                           kCGPDFContextTitle: fileName]
+        UIGraphicsBeginPDFContextToData(pdfData, .zero, pdfMetaData)
+        for i in 0..<renderer.numberOfPages{
+            UIGraphicsBeginPDFPage();
+            renderer.drawPage(at: i, in: UIGraphicsGetPDFContextBounds())
+        }
+        UIGraphicsEndPDFContext();
+        pdfData.write(to: url, atomically: true)
+        return url
+    }
     static func textToPDF(textContent:String,fileName:String,pageMarginx:Double,pageMarginy:Double)->URL?{
         let printFormatter=UISimpleTextPrintFormatter(text: textContent)
         let renderer=UIPrintPageRenderer()

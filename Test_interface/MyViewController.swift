@@ -14,6 +14,7 @@ var dosave : Bool = true
 var stc : Bool = false
 var sumai : Bool = false
 let defaults = UserDefaults.standard
+var buttonstatus = false
 
 class MyViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     

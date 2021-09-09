@@ -84,3 +84,6 @@
 
 /* category string */
 "Science" = "Scienza";
+
+/* alertController title */
+"Translate" = "Traduci";

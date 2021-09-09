@@ -16,7 +16,7 @@
                 <pageViewController storyboardIdentifier="initial" autoresizesArchivedViewToFullSize="NO" hidesBottomBarWhenPushed="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="tbP-Hx-Qux" customClass="MyViewController" customModule="Test_Interface" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k2q-ra-mF9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1274" y="-672"/>
+            <point key="canvasLocation" x="38" y="-672"/>
         </scene>
         <!--Recents View Controller-->
         <scene sceneID="xSr-9a-qqC">
@@ -81,11 +81,12 @@
                     </tableView>
                     <connections>
                         <segue destination="Wjz-tp-fE0" kind="show" identifier="RecCompSegue" id="kCp-Sv-Qcn"/>
+                        <segue destination="73h-mA-vnt" kind="show" identifier="TrSumSegue" id="cyU-Rx-05B"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KTG-Y9-HLG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1681.1594202898552" y="101.78571428571428"/>
+            <point key="canvasLocation" x="923" y="-672"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="Xiu-qP-e7o">
@@ -188,7 +189,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PnF-ZM-a8i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865.21739130434787" y="101.78571428571428"/>
+            <point key="canvasLocation" x="1917" y="-672"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="OGb-kR-t9w">
@@ -298,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MuK-sc-Igq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="-672"/>
+            <point key="canvasLocation" x="2722" y="50"/>
         </scene>
         <!--Comprehension View Controller-->
         <scene sceneID="wtU-KD-OO3">
@@ -369,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KWI-y1-yYT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-865" y="834"/>
+            <point key="canvasLocation" x="-45" y="881"/>
         </scene>
         <!--Text View Controller-->
         <scene sceneID="8zD-Zg-KK2">
@@ -448,7 +449,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d6p-JM-moj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="60.869565217391312" y="101.78571428571428"/>
+            <point key="canvasLocation" x="1916" y="50"/>
         </scene>
         <!--Sum View Controller-->
         <scene sceneID="PZv-T3-xJC">
@@ -514,6 +515,7 @@
                             <constraint firstItem="Pgc-kN-Zfv" firstAttribute="top" secondItem="xSp-Ln-a04" secondAttribute="top" id="y9O-ad-TBV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Mhz-dw-baR"/>
                     <connections>
                         <outlet property="cancelButton" destination="rHM-EI-bUp" id="2BA-uP-SaO"/>
                         <outlet property="doneButton" destination="ohQ-NR-WKj" id="isO-DV-CRW"/>
@@ -523,10 +525,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDk-0x-RQ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="971.01449275362324" y="101.78571428571428"/>
+            <point key="canvasLocation" x="1272" y="881"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="cyU-Rx-05B"/>
         <segue reference="dpC-mB-pCU"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -10,9 +10,12 @@ import QuickLook
 import PDFKit
 import NaturalLanguage
 import CoreML
+import SwiftGoogleTranslate
 
 class RecentsViewController: UITableViewController, QLPreviewControllerDataSource, UIGestureRecognizerDelegate, UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate{
     
+    var flag = 0
+    var trtxt : String = ""
     var urls : [URL] = []
     var previews: [Preview] = []
     let previewVC = QLPreviewController()
@@ -24,14 +27,6 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
     let searchController = UISearchController(searchResultsController: nil)
     var filteredpreviews: [Preview] = []
     let scopes : [String] = [NSLocalizedString("All", comment: "category string"), NSLocalizedString("Business", comment: "category string"), NSLocalizedString("Food", comment: "category string"), NSLocalizedString("Medical", comment: "category string"), NSLocalizedString("Politics", comment: "category string"), NSLocalizedString("Sport", comment: "category string"), NSLocalizedString("Science", comment: "category string"), NSLocalizedString("Technology", comment: "category string")]
-    
-    /*override func viewWillAppear(_ animated: Bool) {
-        do{
-            let config=MLModelConfiguration();
-            model=try DocumentClassifier_1(configuration: config);
-        } catch{
-        }
-    }*/
     
     func resizeTableViewHeaderHeight() {
         let headerView = self.tableView.tableHeaderView
@@ -142,6 +137,7 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                 let altitle = NSLocalizedString("Delete", comment: "alertController title")
                 let altitle2 = NSLocalizedString("Cancel", comment: "alertController title")
                 let altitle3 = NSLocalizedString("Text Comprehension", comment: "alertController title")
+                let altitle4 = NSLocalizedString("Translate", comment: "alertController title")
                 let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: altitle, style: .destructive, handler: { action in
                     if FileManager.default.fileExists(atPath: self.urls[indexPath.row].path) {
@@ -168,6 +164,25 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
                         self.performSegue(withIdentifier: "RecCompSegue", sender: self)
                     }))
                 }
+                alert.addAction(UIAlertAction(title: altitle4, style: .default, handler: { action in
+                    let textScan = pdfUtil.readPDFpages(url: self.urls[indexPath.row], pages: .all)
+                    let semaphore = DispatchSemaphore(value: 0)
+                    //Google API key
+                    SwiftGoogleTranslate.shared.start(with: "Google API key")
+                    SwiftGoogleTranslate.shared.translate(textScan, "it", "en") { (text, error) in
+                        if let t = text {
+                            print(t)
+                            self.trtxt = t
+                            self.flag = 1
+                            semaphore.signal()
+                        }
+                    }
+                    semaphore.wait()
+                    if self.flag == 1{
+                        self.flag = 0
+                        self.performSegue(withIdentifier: "TrSumSegue", sender: self)
+                    }
+                }))
                 alert.addAction(UIAlertAction(title: altitle2, style: .cancel, handler: nil))
                 present(alert, animated: true, completion: nil)
             }
@@ -281,8 +296,14 @@ class RecentsViewController: UITableViewController, QLPreviewControllerDataSourc
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if(segue.identifier == "RecCompSegue"){
-                    let txtseg = segue.destination as! ComprehensionViewController
-                    txtseg.txt = txt
+            let txtseg = segue.destination as! ComprehensionViewController
+            txtseg.txt = txt
+        }
+        if(segue.identifier == "TrSumSegue"){
+            let sumseg = segue.destination as! SumViewController
+            sumseg.txt = [trtxt]
+            sumseg.ttl = ""
+            buttonstatus = true
         }
     }
 

@@ -1,16 +1,20 @@
 PODS:
   - Reductio (1.4.0)
+  - SwiftGoogleTranslate (0.2.1)
 
 DEPENDENCIES:
   - Reductio
+  - SwiftGoogleTranslate
 
 SPEC REPOS:
   trunk:
     - Reductio
+    - SwiftGoogleTranslate
 
 SPEC CHECKSUMS:
   Reductio: bb6fe437dc1025f766d1c39161029efad2220cc9
+  SwiftGoogleTranslate: 96960d3548e800e15b347518afca546d2edc8519
 
-PODFILE CHECKSUM: 1fce30b8bede0c3873eae6b1de05d54eb1acce18
+PODFILE CHECKSUM: fb5dfd23c3895a02995d931570128208916dcfa2
 
 COCOAPODS: 1.10.1
